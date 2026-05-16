@@ -1,12 +1,27 @@
 # Ephemeros
+<p align="center">
+<img
+   src="https://github.com/user-attachments/assets/02fb75b5-149f-413e-8946-a8b24ce8d891"
+   height = "100"
+   object-position: 50% 50%;
+   alt="Emphemeros">
+</p>
 
-Ephemeros is a proof of concept for an **Ephemeral Context Bridge** for IBM Bob (hence it's name).
+<p align="center"> 
+  <img src="https://img.shields.io/badge/status-proof--of--concept-yellow?style=for-the-badge" alt="Proof of Concept"> 
+  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="MIT License"> 
+  <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js 18+"> 
+  <img src="https://img.shields.io/badge/Tailscale-Compatible-5C9EAD?style=for-the-badge&logo=tailscale&logoColor=white" alt="Tailscale Compatible"> 
+  <img src="https://img.shields.io/badge/IBM%20Bob-Integrated-052FAD?style=for-the-badge" alt="IBM Bob Integrated"> 
+</p>
 
-Many companies these days host private systems behind a corporate firewall, and they want to use AI tools like Claude, Gemini, and perhaps even IBM Bob to analyze such data. But they don't want to expose the entire network, and they don't want to store raw private data in logs or caches.
+Ephemeros is a proof-of-concept for an **Ephemeral Context Bridge** for IBM Bob (hence it's name).
 
-This idea of mine aims to fulfill a small requirment: AI tools such as Bob should be able to ask for one piece of restricted context, use it, and then lose access to it. No permanent VPN tunnel. No broad indexing of private systems. No raw private page body stored in logs. 
+Many companies these days host private systems behind a corporate firewall, and they want to use AI tools like Claude, Gemini, and perhaps even IBM Bob to analyze such data. But they don't want to expose the entire network, and they also don't want to store raw private data in logs or caches.
 
-The restricted system in this repository is a basic one, and has been simulated with synthetic data, due to the short timeframe of this hackathon.
+This idea aims to fulfill a small but crucial requirment: **AI tools such as Bob should be able to ask for one piece of restricted context, use it, and then lose access to it.** No permanent VPN tunnel. No broad indexing of private systems. No raw private page body stored in logs. 
+
+Note: The restricted system in this repository is a basic one, and has been simulated with synthetic data, due to the short timeframe of this hackathon.
 
 ## What It Shows
 
