@@ -1,0 +1,6 @@
+{
+  "requestId": "bob-demo-bond-yields",
+  "resourceType": "schema",
+  "resourceId": "quant/rates/bond_yields",
+  "purpose": "IBM Bob needs schema context to write Python query code for historical bond yields"
+}

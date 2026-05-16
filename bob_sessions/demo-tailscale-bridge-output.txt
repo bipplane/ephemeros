@@ -1,0 +1,47 @@
+Ephemeros Bridge Check
+======================
+Role: bridge = Bob-facing MCP flow. It checks target reachability, then writes safe local context for Bob.
+Status: success
+Exit code: 0
+
+Command output:
+Ephemeros Demo Result
+=====================
+Status: success
+Tool: fetch_context
+Context ID: bob-mcp-demo-bond-yields
+Context file: C:\Users\ryanc\VSC Projects\ephemeros\.bob_restricted_context\bob-mcp-demo-bond-yields.md
+Evidence copy: C:\Users\ryanc\VSC Projects\ephemeros\bob_sessions\demo-tailscale-context.md
+Bytes written: 1112
+Expires at: 2026-05-16T16:29:08.340Z
+
+Filtered Context Summary
+------------------------
+- resourceType: schema
+- resourceId: quant/rates/bond_yields
+- dataset: "vpn_synthetic_schema"
+- classification: "synthetic-demo"
+- connector: "vpn-check"
+- remoteContentStored: false
+- remoteContentSentToBob: false
+- urlHost: "100.82.136.35:8080"
+- httpStatus: 200
+
+Schema delivered to Bob:
+```sql
+CREATE TABLE internal_quant.bond_yields (
+  trade_date DATE NOT NULL,
+  cusip VARCHAR(9) NOT NULL,
+  tenor_years INTEGER NOT NULL,
+  yield_bps NUMERIC(10, 4) NOT NULL,
+  source_system VARCHAR(32) NOT NULL,
+  PRIMARY KEY (trade_date, cusip, tenor_years)
+);
+```
+
+Access rule: queries must filter trade_date by bounded date range and must not select source_system unless requested.
+
+Cleanup
+-------
+Status: success
+Removed context file: true

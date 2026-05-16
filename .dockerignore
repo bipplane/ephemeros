@@ -1,0 +1,9 @@
+node_modules
+.bob_restricted_context
+.env
+coverage
+npm-debug.log*
+.git
+bob_sessions/*
+!bob_sessions/README.md
+artifacts

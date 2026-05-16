@@ -1,0 +1,37 @@
+# Synthetic Secure Enclave Export
+
+Dataset: synthetic_quant_rates
+Classification: synthetic-demo
+Purpose: Hackathon proof of concept only.
+
+This file simulates a restricted enterprise knowledge export. It contains useful schema plus irrelevant and sensitive-looking synthetic fields that must not be passed to IBM Bob unless requested.
+
+## Relevant table
+
+```sql
+CREATE TABLE internal_quant.bond_yields (
+  trade_date DATE NOT NULL,
+  cusip VARCHAR(9) NOT NULL,
+  tenor_years INTEGER NOT NULL,
+  yield_bps NUMERIC(10, 4) NOT NULL,
+  source_system VARCHAR(32) NOT NULL,
+  PRIMARY KEY (trade_date, cusip, tenor_years)
+);
+```
+
+Access rule: queries must filter trade_date by bounded date range and must not select source_system unless requested.
+
+## Irrelevant synthetic table that should be filtered out
+
+```sql
+CREATE TABLE internal_hr.synthetic_employee_directory (
+  employee_id VARCHAR(12) NOT NULL,
+  synthetic_email VARCHAR(128) NOT NULL,
+  synthetic_phone VARCHAR(32) NOT NULL,
+  office_code VARCHAR(8) NOT NULL
+);
+```
+
+## Irrelevant boilerplate
+
+Database exports include many operational notes, migration comments, and table fragments. Ephemeros should extract only context needed for Bob's specific coding request.

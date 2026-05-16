@@ -1,0 +1,45 @@
+{
+  "name": "ephemeros",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "npm@11.12.1",
+  "description": "Ephemeral Context Bridge prototype for IBM Bob.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "start:mcp": "node src/mcpServer.js",
+    "demo": "node scripts/demo-bob-flow.js",
+    "demo:mcp": "node scripts/demo-mcp-flow.js",
+    "demo:watsonx": "node scripts/demo-watsonx-flow.js",
+    "demo:vpn-check": "node scripts/demo-vpn-check-flow.js",
+    "demo:tailscale-files": "node scripts/demo-tailscale-output-files.js",
+    "demo:vpn-page": "node scripts/demo-vpn-page-flow.js",
+    "demo:nus-vpn": "node scripts/demo-nus-vpn-flow.js",
+    "serve:vpn-target": "node scripts/serve-vpn-target.js",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "check:deps": "node scripts/check-deps-current.js",
+    "check:secrets": "node scripts/check-secrets.js",
+    "check:compliance": "node scripts/check-hackathon-compliance.js",
+    "demo:secure": "node scripts/demo-secure-enclave-flow.js",
+    "docker:build": "docker build -t ephemeros .",
+    "docker:run:mock": "docker run --rm -p 3000:3000 -e EPHEMEROS_HOST=0.0.0.0 -e EPHEMEROS_ALLOW_UNAUTHENTICATED=true -e EPHEMEROS_MOCK_CONTEXT=true ephemeros",
+    "docker:run:secure": "docker run --rm -p 3000:3000 -e EPHEMEROS_HOST=0.0.0.0 -e EPHEMEROS_ALLOW_UNAUTHENTICATED=true -e EPHEMEROS_MOCK_CONTEXT=true -e EPHEMEROS_CONTEXT_SOURCE=secure-enclave -e EPHEMEROS_FILTER_PROVIDER=local ephemeros",
+    "docker:run:vpn-check": "docker run --rm -p 3000:3000 -e EPHEMEROS_HOST=0.0.0.0 -e EPHEMEROS_ALLOW_UNAUTHENTICATED=true -e EPHEMEROS_MOCK_CONTEXT=true -e EPHEMEROS_CONTEXT_SOURCE=vpn-check -e EPHEMEROS_VPN_TEST_URL ephemeros"
+  },
+  "dependencies": {
+    "@aws-sdk/client-lambda": "3.1048.0",
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "express": "5.2.1",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "eslint": "10.4.0",
+    "globals": "17.6.0",
+    "supertest": "7.2.2",
+    "vitest": "4.1.6"
+  }
+}

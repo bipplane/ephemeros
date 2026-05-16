@@ -1,0 +1,37 @@
+{
+  "license": "Synthetic demo dataset created for the IBM Bob hackathon. No client, personal, confidential, social media, or scraped data.",
+  "resources": [
+    {
+      "resourceType": "schema",
+      "resourceId": "quant/rates/bond_yields",
+      "contextId": "bob-demo-bond-yields",
+      "metadata": {
+        "dataset": "synthetic_quant_rates",
+        "network": "simulated-vpc-private-subnet",
+        "retention": "local-temp-file",
+        "classification": "synthetic-demo"
+      },
+      "content": "```sql\nCREATE TABLE internal_quant.bond_yields (\n  trade_date DATE NOT NULL,\n  cusip VARCHAR(9) NOT NULL,\n  tenor_years INTEGER NOT NULL,\n  yield_bps NUMERIC(10, 4) NOT NULL,\n  source_system VARCHAR(32) NOT NULL,\n  PRIMARY KEY (trade_date, cusip, tenor_years)\n);\n```\n\nAccess rule: queries must filter trade_date by bounded date range and must not select source_system unless requested."
+    },
+    {
+      "resourceType": "docs",
+      "resourceId": "quant/rates/query_policy",
+      "contextId": "bob-demo-query-policy",
+      "metadata": {
+        "dataset": "synthetic_quant_rates",
+        "classification": "synthetic-demo"
+      },
+      "content": "# Query Policy\n\n- Always require start_date and end_date.\n- Reject open-ended historical queries.\n- Use parameterized SQL.\n- Return yield values in basis points unless caller requests percentage conversion."
+    },
+    {
+      "resourceType": "code",
+      "resourceId": "legacy/python/bond_yield_client",
+      "contextId": "bob-demo-legacy-client",
+      "metadata": {
+        "dataset": "synthetic_quant_rates",
+        "classification": "synthetic-demo"
+      },
+      "content": "```python\nclass BondYieldClient:\n    def fetch_range(self, cusip: str, start_date: str, end_date: str):\n        raise NotImplementedError(\"Synthetic legacy client stub for demo\")\n```"
+    }
+  ]
+}
