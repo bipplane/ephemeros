@@ -24,6 +24,25 @@ const server = http.createServer(async (req, res) => {
   res.end(body);
 });
 
+server.on("error", async (error) => {
+  if (error.code === "EADDRINUSE") {
+    const url = `http://${host === "0.0.0.0" ? "127.0.0.1" : host}:${port}/ephemeros-vpn-health.txt`;
+    try {
+      const response = await fetch(url, { signal: AbortSignal.timeout(2000) });
+      const body = await response.text();
+      if (response.ok && body.includes("Ephemeros VPN reachability proof")) {
+        console.log(`Ephemeros VPN target already running at ${url}`);
+        process.exit(0);
+      }
+    } catch {
+      // Fall through to the normal error.
+    }
+  }
+
+  console.error(error.message);
+  process.exit(1);
+});
+
 server.listen(port, host, () => {
   console.log(`Ephemeros VPN target listening on http://${host}:${port}/ephemeros-vpn-health.txt`);
 });
