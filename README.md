@@ -31,6 +31,29 @@ Note: The restricted system in this repository is a basic one, and has been simu
 - A Tailscale/local HTTP target proves the network reachability part without using real private data.
 - watsonx.ai filtering is optional; the main demo works offline with a deterministic local filter.
 
+## Why This Is Different
+
+Although MCP database connectors and internal-tool connectors already exist, and IBM Bob can already use MCP when configured properly, the gap that Ephemeros focuses on is narrower and special:
+
+> How do we let Bob use private enterprise context without giving it broad, persistent access to private systems?
+
+Here, Ephemeros treats context access as a short-lived security workflow:
+
+- **Scoped request**: Bob asks for a specific resource such as `quant/rates/bond_yields`.
+- **Purpose-bound access**: each request carries a reason.
+- **Filtered output**: only the relevant schema/context is written locally.
+- **Temporary file**: context lands in `.bob_restricted_context/`, not in the repo.
+- **Cleanup step**: Bob calls `cleanup_context` after use.
+- **Audit-ready metadata**: output includes resource ID, byte count, expiry, and source metadata.
+
+That is the **moat**: Ephemeros is less about “connect AI to a database” and more about making private context access acceptable for security-conscious teams.
+
+## Competitive Angle
+
+Many hackathon projects will show Bob generating code, tests, docs, or a simple UI. Those are useful, but common. Ephemeros aims at a harder enterprise blocker: Bob cannot write accurate code against systems it cannot see.
+
+Compared with generic MCP database tools, Ephemeros is more restrictive on purpose. It is built around temporary context, explicit cleanup, and narrow resource IDs instead of open-ended querying.
+
 ## Main Demo
 
 Use this path for judges:
