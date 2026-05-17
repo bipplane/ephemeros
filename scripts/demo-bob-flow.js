@@ -17,10 +17,10 @@ const app = createApp({
 const fetchResponse = await request(app)
   .post("/fetch-context")
   .send({
-    requestId: "bob-demo-bond-yields",
+    requestId: "demo-bond-yields",
     resourceType: "schema",
     resourceId: "quant/rates/bond_yields",
-    purpose: "IBM Bob needs schema context to write Python query code for historical bond yields"
+    purpose: "Schema context is needed to write historical bond-yield query code"
   });
 
 if (fetchResponse.status !== 200) {
@@ -28,8 +28,8 @@ if (fetchResponse.status !== 200) {
   process.exitCode = 1;
 } else {
   const context = await fs.readFile(fetchResponse.body.path, "utf8");
-  console.log("IBM Bob prompt:");
-  console.log("Write a Python script to query historical bond yields using context file below.");
+  console.log("Request:");
+  console.log("Write a Python script to query historical bond yields using this context.");
   console.log("");
   console.log(`Context path: ${fetchResponse.body.path}`);
   console.log("");

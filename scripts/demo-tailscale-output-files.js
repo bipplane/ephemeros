@@ -34,8 +34,8 @@ const bridgeOutput = formatBridgeReport(bridgeResult);
 await fs.writeFile(bridgeOutputPath, bridgeOutput, "utf8");
 await fs.writeFile(combinedOutputPath, formatCombinedReport({ targetOutput, bridgeOutput }), "utf8");
 
-console.log("Tailscale Demo Output Files");
-console.log("===========================");
+console.log("Reachability Output Files");
+console.log("=========================");
 console.log(`Target URL: ${targetReport.url}`);
 if (targetReport.fallbackFrom) {
   console.log(`Fallback from: ${targetReport.fallbackFrom}`);
@@ -96,9 +96,9 @@ async function checkTarget(url) {
 
 function formatTargetReport(report) {
   const lines = [
-    "Ephemeros Target Check",
-    "======================",
-    "Role: target = VPN-only HTTP file that proves network reachability.",
+    "Target Check",
+    "============",
+    "Role: HTTP endpoint used for reachability.",
     `Status: ${report.ok ? "success" : "failed"}`,
     `Checked at: ${report.checkedAt}`,
     `URL: ${report.url}`,
@@ -120,9 +120,9 @@ function formatTargetReport(report) {
 
 function formatBridgeReport(result) {
   return [
-    "Ephemeros Bridge Check",
-    "======================",
-    "Role: bridge = Bob-facing MCP flow. It checks target reachability, then writes safe local context for Bob.",
+    "Bridge Check",
+    "============",
+    "Role: context bridge. It checks reachability, then writes local context.",
     `Status: ${result.status === 0 ? "success" : "failed"}`,
     `Exit code: ${result.status ?? "unknown"}`,
     "",
@@ -134,9 +134,9 @@ function formatBridgeReport(result) {
 
 function formatCombinedReport({ targetOutput, bridgeOutput }) {
   return [
-    "Ephemeros VPN Demo Combined Report",
-    "==================================",
-    "Flow: Chrome/Bob reaches target URL -> bridge verifies reachability -> Bob receives sanitized local context -> cleanup removes temp file.",
+    "Ephemeros Reachability Report",
+    "============================",
+    "Flow: target check -> context write -> cleanup.",
     "",
     targetOutput.trim(),
     "",

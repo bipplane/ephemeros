@@ -18,7 +18,7 @@ export function createEphemerosMcpServer({ config, invokeLambda }) {
     {
       title: "Fetch restricted enterprise context",
       description:
-        "Fetch narrow schema, documentation, or code context from simulated or private enterprise systems and write it to a temporary Bob-readable local file.",
+        "Fetch narrow schema, documentation, or code context and write it to a temporary local file.",
       inputSchema: {
         requestId: z.string().regex(/^[A-Za-z0-9._-]{3,80}$/).optional(),
         resourceType: z.enum(["schema", "docs", "code"]),
@@ -40,7 +40,7 @@ export function createEphemerosMcpServer({ config, invokeLambda }) {
                 path: result.path,
                 bytes: result.bytes,
                 expiresAt: result.expiresAt,
-                note: "Read returned path for local context. Call cleanup_context when done."
+                note: "Read returned path, then call cleanup_context when done."
               },
               null,
               2

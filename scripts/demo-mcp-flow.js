@@ -40,12 +40,12 @@ async function main() {
       client.callTool({
         name: "fetch_context",
         arguments: {
-          requestId: process.env.EPHEMEROS_DEMO_REQUEST_ID ?? "bob-mcp-demo-bond-yields",
+          requestId: process.env.EPHEMEROS_DEMO_REQUEST_ID ?? "demo-bond-yields",
           resourceType: process.env.EPHEMEROS_DEMO_RESOURCE_TYPE ?? "schema",
           resourceId: process.env.EPHEMEROS_DEMO_RESOURCE_ID ?? "quant/rates/bond_yields",
           purpose:
             process.env.EPHEMEROS_DEMO_PURPOSE ??
-            "IBM Bob needs schema context to write Python query code for historical bond yields"
+            "Schema context is needed to write historical bond-yield query code"
         }
       }),
       Number.parseInt(process.env.EPHEMEROS_DEMO_TIMEOUT_MS ?? "60000", 10),
@@ -155,7 +155,7 @@ function summarizeContext(fileContent) {
   return [
     ...summaryLines,
     "",
-    sqlLines.length > 0 ? "Schema delivered to Bob:" : "Context delivered to Bob:",
+    sqlLines.length > 0 ? "Schema:" : "Context:",
     ...(sqlLines.length > 0 ? sqlLines : excerptRetrievedContent(lines)),
     accessRule ? "" : null,
     accessRule ?? null
