@@ -2,16 +2,14 @@ Ephemeros Target Check
 ======================
 Role: target = VPN-only HTTP file that proves network reachability.
 Status: success
-Checked at: 2026-05-17T07:35:27.632Z
+Checked at: 2026-05-17T08:18:47.686Z
 URL: http://100.82.136.35:8080/ephemeros-vpn-health.txt
 Host: 100.82.136.35:8080
 HTTP status: 200 OK
-Bytes received: 187
+Bytes received: 135
 
 Body:
-Ephemeros VPN reachability proof.
-Synthetic data only.
-No confidential data.
-No personal information.
-No social media data.
-Remote body is not stored or sent to Bob by the VPN connector.
+Ephemeros VPN reachability proof
+blablabla tung tung tung sahur.
+67.
+Remote body is not stored or sent to Bob by the VPN connector

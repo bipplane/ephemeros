@@ -6,19 +6,17 @@ Ephemeros Target Check
 ======================
 Role: target = VPN-only HTTP file that proves network reachability.
 Status: success
-Checked at: 2026-05-17T07:35:27.632Z
+Checked at: 2026-05-17T08:18:47.686Z
 URL: http://100.82.136.35:8080/ephemeros-vpn-health.txt
 Host: 100.82.136.35:8080
 HTTP status: 200 OK
-Bytes received: 187
+Bytes received: 135
 
 Body:
-Ephemeros VPN reachability proof.
-Synthetic data only.
-No confidential data.
-No personal information.
-No social media data.
-Remote body is not stored or sent to Bob by the VPN connector.
+Ephemeros VPN reachability proof
+blablabla tung tung tung sahur.
+67.
+Remote body is not stored or sent to Bob by the VPN connector
 
 Ephemeros Bridge Check
 ======================
@@ -35,7 +33,7 @@ Context ID: bob-mcp-demo-bond-yields
 Context file: C:\Users\ryanc\VSC Projects\ephemeros\.bob_restricted_context\bob-mcp-demo-bond-yields.md
 Evidence copy: C:\Users\ryanc\VSC Projects\ephemeros\bob_sessions\demo-tailscale-context.md
 Bytes written: 1112
-Expires at: 2026-05-17T07:40:28.830Z
+Expires at: 2026-05-17T08:23:48.839Z
 
 Filtered Context Summary
 ------------------------
