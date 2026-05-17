@@ -13,7 +13,7 @@ Context ID: bob-mcp-demo-bond-yields
 Context file: C:\Users\ryanc\VSC Projects\ephemeros\.bob_restricted_context\bob-mcp-demo-bond-yields.md
 Evidence copy: C:\Users\ryanc\VSC Projects\ephemeros\bob_sessions\demo-tailscale-context.md
 Bytes written: 1112
-Expires at: 2026-05-16T16:29:08.340Z
+Expires at: 2026-05-17T07:40:28.830Z
 
 Filtered Context Summary
 ------------------------

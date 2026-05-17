@@ -3,7 +3,7 @@
 - resourceType: schema
 - resourceId: quant/rates/bond_yields
 - purpose: IBM Bob needs schema context to write Python query code for historical bond yields
-- expiresAt: 2026-05-16T16:29:08.340Z
+- expiresAt: 2026-05-17T07:40:28.830Z
 - dataset: "vpn_synthetic_schema"
 - classification: "synthetic-demo"
 - connector: "vpn-check"
@@ -11,7 +11,7 @@
 - remoteContentSentToBob: false
 - urlHost: "100.82.136.35:8080"
 - httpStatus: 200
-- checkedAt: "2026-05-16T16:24:08.337Z"
+- checkedAt: "2026-05-17T07:35:28.827Z"
 
 ## Retrieved Content
 
