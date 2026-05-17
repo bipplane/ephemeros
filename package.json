@@ -20,6 +20,7 @@
     "demo:nus-vpn": "node scripts/demo-nus-vpn-flow.js",
     "serve:vpn-target": "node scripts/serve-vpn-target.js",
     "test": "vitest run",
+    "test:product": "node scripts/product-smoke.js",
     "lint": "eslint .",
     "check:deps": "node scripts/check-deps-current.js",
     "check:secrets": "node scripts/check-secrets.js",
