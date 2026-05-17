@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { checkVpnReachability, invokeVpnCheckContext, loadVpnSyntheticContext } from "../src/vpnConnector.js";
 
 describe("VPN reachability connector", () => {
-  it("records only safe reachability metadata", async () => {
+  it("records reachability metadata", async () => {
     const fetchImpl = vi.fn(async () => ({
       status: 200,
       statusText: "OK",
@@ -38,7 +38,7 @@ describe("VPN reachability connector", () => {
     ).rejects.toThrow("VPN target unreachable");
   });
 
-  it("uses synthetic local schema after reachability succeeds", async () => {
+  it("uses local schema after reachability succeeds", async () => {
     process.env.EPHEMEROS_VPN_TEST_URL = "https://example.com/status";
     const originalFetch = globalThis.fetch;
     globalThis.fetch = vi.fn(async () => ({

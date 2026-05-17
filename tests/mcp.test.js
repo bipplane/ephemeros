@@ -18,7 +18,7 @@ afterEach(async () => {
 });
 
 describe("Ephemeros MCP server", () => {
-  it("exposes fetch_context and cleanup_context for Bob", async () => {
+  it("fetches and removes context through MCP", async () => {
     const server = createEphemerosMcpServer({
       config: {
         contextDir: tempDir,
@@ -26,7 +26,7 @@ describe("Ephemeros MCP server", () => {
       },
       invokeLambda: invokeMockRestrictedContext
     });
-    const client = new Client({ name: "test-bob-client", version: "0.1.0" });
+    const client = new Client({ name: "test-client", version: "0.1.0" });
     const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
 
     try {
@@ -40,7 +40,7 @@ describe("Ephemeros MCP server", () => {
           requestId: "mcp-test-bond-yields",
           resourceType: "schema",
           resourceId: "quant/rates/bond_yields",
-          purpose: "IBM Bob needs schema context to write Python query code for historical bond yields"
+          purpose: "Schema context is needed to write historical bond-yield query code"
         }
       });
       const metadata = JSON.parse(fetchResult.content[0].text);

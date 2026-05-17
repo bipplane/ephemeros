@@ -28,7 +28,7 @@ afterEach(async () => {
 });
 
 describe("Ephemeros bridge", () => {
-  it("fetches context, writes markdown file, and returns Bob-readable path", async () => {
+  it("fetches context, writes markdown file, and returns its path", async () => {
     const invokeLambda = vi.fn(async () => ({
       contextId: "ctx-demo",
       content: "table trades(id int, cusip text, yield decimal)",
@@ -39,7 +39,7 @@ describe("Ephemeros bridge", () => {
     const response = await request(appWithMock(invokeLambda))
       .post("/fetch-context")
       .send({
-        requestId: "bob-001",
+        requestId: "req-001",
         resourceType: "schema",
         resourceId: "quant/rates/bond_yields",
         purpose: "Generate query code for historical bond yields"
