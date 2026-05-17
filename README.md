@@ -1,4 +1,3 @@
-# Ephemeros
 <p align="center">
 <img
    src="https://github.com/user-attachments/assets/02fb75b5-149f-413e-8946-a8b24ce8d891"
@@ -15,15 +14,33 @@
   <img src="https://img.shields.io/badge/IBM%20Bob-Integrated-052FAD?style=for-the-badge" alt="IBM Bob Integrated"> 
 </p>
 
-Ephemeros is a proof-of-concept for an **Ephemeral Context Bridge** for IBM Bob (hence it's name).
+## ephemeral | *adj. /ɪˈfɛmərəl/*
 
-Many companies these days host private systems behind a corporate firewall, and they want to use AI tools like Claude, Gemini, and perhaps even IBM Bob to analyze such data. But they don't want to expose the entire network, and they also don't want to store raw private data in logs or caches.
 
-This idea aims to fulfill a small but crucial requirment: **AI tools such as Bob should be able to ask for one piece of restricted context, use it, and then lose access to it.** No permanent VPN tunnel. No broad indexing of private systems. No raw private page body stored in logs. 
+> **Lasting for only a short time; fleeting; transitory.**
 
-Note: The restricted system in this repository is a basic one, and has been simulated with synthetic data, due to the short timeframe of this hackathon.
+Ephemeros is a proof-of-concept for an **Ephemeral Context Bridge** for IBM Bob, which currently does not automatically have access to private enterprise schema or VPN-only systems. Bob can access those systems only if a developer/team configures an MCP tool or other approved integration. 
 
-## What It Shows
+Ephemeros *is* that scoped MCP bridge.
+
+## Abstract
+
+AI coding assistants are incredibly powerful, but they are blind to the enterprise reality. Proprietary trading algorithms, sensitive company info, internal APIs, and legacy databases, all live behind corporate firewalls. IT security will not authorise permanent VPN tunnels for AI agents. This leaves developers manually copying and pasting sensitive context across network boundaries, entirely defeating the purpose of an integrated IDE workflow.
+
+Sure, a company could build a bespoke, in-house LLM for safe internal use. However, the massive financial investment, maintenance overhead, and uncertain ROI make this an impractical reality for most.
+
+Ephemeros bridges this gap with a zero-trust architecture. It is an Ephemeral Context Bridge that grants IBM Bob just-in-time, temporary access to restricted enterprise data, securely delivering context exactly when it is needed.
+
+This idea aims to fulfill a small but crucial requirment: **AI tools such as Bob should be able to ask for one piece of restricted context, use it, and then lose access to it.** No permanent VPN tunnel. No broad indexing of private systems. No raw private page body stored in logs. Developers unlock the full capability of IBM Bob natively in their IDE, whilst IT security maintains absolute infrastructural control. 
+
+## How it works
+* **Trigger:** The developer asks IBM Bob to write code that requires knowledge of specific internal context.
+* **Fetch:** Bob calls the Ephemeros MCP tool, which opens a temporary, highly scoped connection to retrieve only the explicitly requested schema or documentation.
+* **Destroy:** Ephemeros writes the filtered context locally for Bob to read, generates the code, and instantly wipes the temporary file while severing the connection.
+
+*(Note: For this 48-hour proof-of-concept, the restricted network is simulated using synthetic data to demonstrate the architectural flow without requiring live corporate credentials.)*
+
+## Key Points
 
 - IBM Bob can use MCP tools to request missing enterprise context.
 - Ephemeros writes only the filtered context Bob needs.
@@ -56,7 +73,7 @@ Compared with generic MCP database tools, Ephemeros is more restrictive on purpo
 
 ## Main Demo
 
-Use this path for judges:
+Use this path for judging:
 
 ```powershell
 npm.cmd install
@@ -104,7 +121,7 @@ Remote body is not stored or sent to Bob by the VPN connector.
 
 ## How Bob Fits
 
-Bob is the operator, not a side feature.
+Bob, now equipped with Ephemeros, becomes the active operator that's driving the entire process. 
 
 1. Developer asks Bob to write code that needs internal schema.
 2. Bob calls the Ephemeros MCP tool `fetch_context`.
@@ -113,7 +130,7 @@ Bob is the operator, not a side feature.
 5. Bob calls `cleanup_context`.
 6. The temporary context file is removed.
 
-The local script `npm.cmd run demo:mcp` also runs the same flow without spending Bob credits.
+*Note: The local script `npm.cmd run demo:mcp` also runs the same flow without spending Bob credits.*
 
 ## Architecture
 
@@ -131,7 +148,7 @@ flowchart LR
   Lambda["AWS Lambda skeleton"] -. "future private-network connector" .-> Bridge
 ```
 
-## Implemented
+## Current Implementations
 
 - MCP server with `fetch_context` and `cleanup_context`.
 - Express fallback API with `/health`, `/fetch-context`, and `/cleanup`.
@@ -178,7 +195,9 @@ The local guard still checks the model output before Bob sees it.
 
 ## NUS VPN Note
 
-NUS FortiClient support was tried, but SSO and internal page access were too brittle for a clean recorded demo T_T. rest in peace my granny she got hit by a bazooka
+NUS FortiClient support was tried, but SSO and internal page access were too brittle for a clean recorded demo T_T. Wanted to leave it here in case I ever wanted to pick this project up in the future and try implementing it. 
+
+rest in peace my granny she got hit by a bazooka
 
 ## Verification
 
